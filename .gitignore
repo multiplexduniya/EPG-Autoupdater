@@ -1,0 +1,5 @@
+*.xml
+*.xml.gz
+*.go
+go.mod
+go.sum
