@@ -1,16 +1,16 @@
-name: EPG Daily Workflow
+name: EPG Update
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: "0 21 * * *" # every day at 21:00am UTC (2:30am IST)
   push:
     branches: [ main ]
 
 jobs:
 
   epg:
-    name: IPTV India EPG Setup
+    name: EPG Setup
     runs-on: ubuntu-latest
     steps:
 
@@ -24,5 +24,4 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
       run: |
-        hub release edit -a epg.xml -a epg.xml.gz -m
-  
+        hub release edit -a epg.xml -a epg.xml.gz -m "EPG has been updated." latest
